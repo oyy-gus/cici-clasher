@@ -6,7 +6,7 @@
   <meta name="application-name" content="Cici Clasher">
   <meta name="msapplication-TileColor" content="#5865f2">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Input Data Member</title>
+  <title>Input Data Member Pulu" Clasher</title>
   <meta name="description" content="Input data member Cici Clasher!" />
   <meta property="og:site_name" content="cici clasher" />
   <meta property="og:title" content="Cici Clasher" />
@@ -14,40 +14,74 @@
   <meta property="og:image" content="https://oyy-gus.github.io/oyy-gus/image/cici-clasher.png" />
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-      background: #f9f9f9;
+    :root {
+      --bg-dark: #1a1a2e;
+      --card-dark: #2e2e3e;
+      --text-light: #ffffff;
+      --accent: #8f94fb;
+      --input-bg: #2c2c3c;
+      --border-color: #444;
     }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      padding: 20px;
+      background: var(--bg-dark);
+      color: var(--text-light);
+    }
+
     form {
       max-width: 500px;
       margin: auto;
-      background: #fff;
+      background: var(--card-dark);
       padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 12px;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
     }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: var(--accent);
+    }
+
     label {
       display: block;
       margin-top: 15px;
       font-weight: bold;
+      color: var(--text-light);
     }
+
     input, select, button {
       width: 100%;
       padding: 10px;
-      margin-top: 5px;
+      margin-top: 6px;
       box-sizing: border-box;
+      background: var(--input-bg);
+      border: 1px solid var(--border-color);
+      color: var(--text-light);
+      border-radius: 6px;
+      font-size: 15px;
+      -webkit-tap-highlight-color: transparent;
     }
+
+    input::placeholder, select:invalid {
+      color: #bbb;
+    }
+
     button {
       margin-top: 20px;
-      background: #4CAF50;
+      background: var(--accent);
       color: white;
-      border: none;
+      font-weight: bold;
       cursor: pointer;
+      transition: background 0.3s ease;
     }
+
     button:hover {
-      background: #45a049;
+      background: #7d82f1;
     }
+
     .message {
       text-align: center;
       margin-top: 15px;
@@ -57,19 +91,19 @@
 </head>
 <body>
 
-  <h2 style="text-align:center;">Input Data Member</h2>
+  <h2 style="text-align:center;">Input Data Member Pulu" Clasher</h2>
   <form id="dataForm">
     <label for="nama">Nama Lengkap</label>
-    <input type="text" id="nama" name="nama" placeholder="Contoh: Bagus Dwi Saputro" required />
+    <input type="text" id="nama" name="nama" placeholder="Contoh: Fanny" required />
 
     <label for="nick_coc">Nick COC</label>
-    <input type="text" id="nick_coc" name="nick_coc" placeholder="Contoh: PUNYA CICI, Cici Clasher.v2" required />
+    <input type="text" id="nick_coc" name="nick_coc" placeholder="Contoh: Cici Clasher, Cici Clasher.v2" required />
 
     <label for="total_akun">Total Akun COC</label>
     <input type="number" id="total_akun" name="total_akun" placeholder="Contoh: 2" required />
 
     <label for="username_tiktok">Username TikTok</label>
-    <input type="text" id="username_tiktok" name="username_tiktok" placeholder="Contoh: @oyy_gus" />
+    <input type="text" id="username_tiktok" name="username_tiktok" placeholder="Contoh: @ciciclasher" />
 
     <label for="tanggal_lahir">Tanggal Lahir</label>
     <input type="date" id="tanggal_lahir" name="tanggal_lahir" required />
@@ -99,10 +133,10 @@
     </select>
 
     <label for="asal">Asal Daerah</label>
-    <input type="text" id="asal" name="asal" placeholder="Contoh: Jawa Timur - Malang" required />
+    <input type="text" id="asal" name="asal" placeholder="Contoh: Provinsi - Kota" required />
 
     <label for="no_wa">No WhatsApp</label>
-    <input type="tel" id="no_wa" name="no_wa" placeholder="Contoh: +6285117033332" required />
+    <input type="tel" id="no_wa" name="no_wa" placeholder="Contoh: +62**********" required />
 
     <button type="submit">Kirim</button>
   </form>
@@ -110,7 +144,7 @@
   <div class="message" id="responseMessage"></div>
 
   <script>
-    const scriptUrl = "https://script.google.com/macros/s/AKfycbzqtHDJNCHe_curSstKzINf_CWcmv79SWbVNN4N1jhP_-b3uLJDzv8w-bT9RjeIQQfN/exec";
+    const scriptUrl = "https://script.google.com/macros/s/AKfycbwsto2sNDMbOePhqP4-pNYb0SmKsh1p7QLBH4EJYR8oSnJQM-gsLjtSrdgOwXhxnlqA5A/exec";
 
     document.getElementById("dataForm").addEventListener("submit", function (e) {
       e.preventDefault();
@@ -131,7 +165,7 @@
       };
 
       if (!/^\+\d{7,15}$/.test(data.no_wa)) {
-        responseBox.innerText = "Nomor WhatsApp harus dalam format internasional. Contoh: +6281234567890";
+        responseBox.innerText = "Nomor WhatsApp harus dalam format internasional. Contoh: +62**********";
         responseBox.style.color = "red";
         return;
       }
