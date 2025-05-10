@@ -1,97 +1,113 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-    <meta name="apple-mobile-web-app-title" content="Cici Clasher">
-  <meta name="application-name" content="Cici Clasher">
-  <meta name="msapplication-TileColor" content="#5865f2">
+  <meta charset="UTF-8" />
+  <meta name="apple-mobile-web-app-title" content="Cici Clasher" />
+  <meta name="application-name" content="Cici Clasher" />
+  <meta name="msapplication-TileColor" content="#5865f2" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Input Data Member Cici Clasher 2</title>
-  <meta name="description" content="Input data member Cici Clasher!" />
+  <meta name="description" content="Input Data Member Cici Clasher!" />
   <meta property="og:site_name" content="cici clasher" />
   <meta property="og:title" content="Cici Clasher" />
-  <meta property="og:description" content="Input data member Cici Clasher!" />
+  <meta property="og:description" content="Input Data Member Cici Clasher!" />
   <meta property="og:image" content="https://oyy-gus.github.io/oyy-gus/image/cici-clasher.png" />
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg-dark: #1a1a2e;
-      --card-dark: #2e2e3e;
-      --text-light: #ffffff;
+      --bg-dark: #121212;
+      --card-dark: #1e1e2e;
+      --text-light: #f0f0f0;
       --accent: #8f94fb;
-      --input-bg: #2c2c3c;
-      --border-color: #444;
+      --input-bg: #2a2a3c;
+      --border-color: #555;
+    }
+
+    * {
+      box-sizing: border-box;
     }
 
     body {
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
       padding: 20px;
       background: var(--bg-dark);
       color: var(--text-light);
     }
 
     form {
-      max-width: 500px;
-      margin: auto;
+      max-width: 520px;
+      margin: 30px auto;
       background: var(--card-dark);
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s ease;
+    }
+
+    form:hover {
+      transform: translateY(-3px);
     }
 
     h2 {
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 25px;
       color: var(--accent);
+      font-weight: 600;
     }
 
     label {
       display: block;
-      margin-top: 15px;
-      font-weight: bold;
-      color: var(--text-light);
+      margin-top: 18px;
+      font-weight: 500;
     }
 
     input, select, button {
       width: 100%;
-      padding: 10px;
-      margin-top: 6px;
-      box-sizing: border-box;
+      padding: 12px;
+      margin-top: 8px;
       background: var(--input-bg);
       border: 1px solid var(--border-color);
       color: var(--text-light);
-      border-radius: 6px;
+      border-radius: 8px;
       font-size: 15px;
-      -webkit-tap-highlight-color: transparent;
+      transition: border 0.2s, background 0.2s;
     }
 
-    input::placeholder, select:invalid {
-      color: #bbb;
+    input:focus, select:focus {
+      outline: none;
+      border-color: var(--accent);
+      background: #33344d;
     }
 
+    input::placeholder {
+      color: #aaa;
+    }
     button {
-      margin-top: 20px;
+      margin-top: 25px;
       background: var(--accent);
-      color: white;
-      font-weight: bold;
+      color: #fff;
+      font-weight: 600;
+      border: none;
       cursor: pointer;
       transition: background 0.3s ease;
     }
 
     button:hover {
-      background: #7d82f1;
+      background: #7a7ffc;
     }
 
     .message {
       text-align: center;
-      margin-top: 15px;
-      font-weight: bold;
+      margin-top: 20px;
+      font-weight: 500;
     }
   </style>
 </head>
 <body>
 
-  <h2 style="text-align:center;">Input Data Member Cici Clasher 2</h2>
+  <h2>Input Data Member Cici Clasher 2</h2>
   <form id="dataForm">
     <label for="nama">Nama Lengkap</label>
     <input type="text" id="nama" name="nama" placeholder="Contoh: Fanny" required />
@@ -100,7 +116,7 @@
     <input type="text" id="nick_coc" name="nick_coc" placeholder="Contoh: Cici Clasher, Cici Clasher.v2" required />
 
     <label for="total_akun">Total Akun COC</label>
-    <input type="number" id="total_akun" name="total_akun" placeholder="Contoh: 2" required />
+    <input type="number" id="total_akun" name="total_akun" placeholder="Contoh: 2" required min="1" />
 
     <label for="username_tiktok">Username TikTok</label>
     <input type="text" id="username_tiktok" name="username_tiktok" placeholder="Contoh: @ciciclasher" />
@@ -144,8 +160,21 @@
   <div class="message" id="responseMessage"></div>
 
   <script>
-    const scriptUrl = "https://script.google.com/macros/s/AKfycbzqtHDJNCHe_curSstKzINf_CWcmv79SWbVNN4N1jhP_-b3uLJDzv8w-bT9RjeIQQfN/exec";
-
+    const scriptUrl = "https://script.google.com/macros/s/AKfycbzaPSuHFwDEfHvfnHi7hmd9YlaY_SGgnNVaWZauqRAQ9RB_vLmn7OIFxcSTyvYQjgw_/exec";
+    
+    let userIP = "";
+    
+    window.addEventListener('DOMContentLoaded', () => {
+  fetch('https://api.ipify.org?format=json')
+    .then(res => res.json())
+    .then(data => {
+      userIP = data.ip;
+    })
+    .catch(() => {
+      userIP = "Tidak Diketahui."
+    });
+});
+    
     document.getElementById("dataForm").addEventListener("submit", function (e) {
       e.preventDefault();
       const form = e.target;
@@ -161,7 +190,8 @@
         status_pernikahan: form.status_pernikahan.value,
         jenis_kelamin: form.jenis_kelamin.value,
         asal: form.asal.value,
-        no_wa: form.no_wa.value
+        no_wa: form.no_wa.value,
+        ip_address: userIP
       };
 
       if (!/^\+\d{7,15}$/.test(data.no_wa)) {
